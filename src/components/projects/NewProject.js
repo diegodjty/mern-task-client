@@ -4,12 +4,11 @@ import projectContext from '../../context/projects/projectContext';
 const NewProject = () => {
 
     const projectsContext = useContext(projectContext)
-    const {form, showForm,addProject} = projectsContext;
-    console.log(form)
+    const {form, showForm,addProject,formError,showError} = projectsContext;
     const [project,setProject] = useState({
         name: ''
     });
-
+    console.log(formError)
     const {name} = project
     const onChangeProject =  e =>{
         setProject({
@@ -22,7 +21,10 @@ const NewProject = () => {
         e.preventDefault();
 
         // Validate project
-        if(name ===''){return;}
+        if(name === ''){
+            showError()
+            return;
+        }
         // Add to State
         addProject(project)
         // Reset Form
@@ -63,6 +65,7 @@ const NewProject = () => {
                 :
                     null
             }
+            {formError ? <p className="mensaje error">Project is required</p> :null}
         </Fragment>
 
         

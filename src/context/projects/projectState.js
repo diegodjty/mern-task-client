@@ -4,7 +4,7 @@ import uuid from 'uuid/v4'
 
 import projectContext from './projectContext'
 import projectReducer from './projectReducer'
-import {PROJECT_FORM, GET_PROJECTS,ADD_PROJECT} from '../../types'
+import {PROJECT_FORM, GET_PROJECTS,ADD_PROJECT,VALIDATE_FORM} from '../../types'
 
 
 
@@ -17,7 +17,8 @@ const ProjectState = props =>{
 
     const initialSate = {
         form : false,
-        projects : []
+        projects : [],
+        formError: false
     }
 
     const [state, dispatch] = useReducer(projectReducer,initialSate)
@@ -44,11 +45,19 @@ const ProjectState = props =>{
         })
     }
 
+    const showError = () => {
+        dispatch({
+            type: VALIDATE_FORM
+        })
+    }
+
     return (
         <projectContext.Provider
             value={{
                 form: state.form,
                 projects: state.projects,
+                formError: state.formError,
+                showError,
                 showForm,
                 getProjects,
                 addProject
