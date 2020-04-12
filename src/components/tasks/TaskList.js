@@ -15,10 +15,7 @@ const TaskList = () => {
     const [actualProject] = project;
 
     const tasks = [
-        {name: 'Choose Platform', status: true},
-        {name: 'Choose colors', status: false},
-        {name: 'Choose pay method', status: false},
-        {name: 'Choose hosting', status: true}
+        
     ]
 
     return (
