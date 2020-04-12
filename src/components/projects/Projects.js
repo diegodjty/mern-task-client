@@ -2,6 +2,9 @@ import React from 'react'
 import Sidebar from '../layout/Sidebar'
 import Bar from '../layout/Bar';
 import TaskForm from '../tasks/TaskForm';
+import TaskList from '../tasks/TaskList';
+
+
 
 const Projects = () => {
     return (
@@ -13,7 +16,7 @@ const Projects = () => {
                 <main>
                     <TaskForm />
                     <div className="contenedor-tareas">
-                        
+                        <TaskList/>
                     </div>
                 </main>
             </div>
