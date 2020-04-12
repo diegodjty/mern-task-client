@@ -6,7 +6,7 @@ const TaskList = () => {
 
     // Extract projects from initial state
     const projectsContext = useContext(projectContext)
-    const {project} = projectsContext;
+    const {project,deleteProject} = projectsContext;
 
     // If no projects are selected
     if(!project)return <h2>Select a Project</h2>
@@ -39,6 +39,7 @@ const TaskList = () => {
             <button
                 type="button"
                 className=" btn btn-eliminar"
+                onClick={ ()=>{deleteProject(actualProject.id)}}
             >
                 Delete Prokect &times;
             </button>

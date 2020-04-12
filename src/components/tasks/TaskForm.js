@@ -1,6 +1,20 @@
-import React from 'react'
+import React,{useContext} from 'react'
+
+import projectContext from '../../context/projects/projectContext';
 
 const TaskForm = () => {
+
+
+    // Extract projects from initial state
+    const projectsContext = useContext(projectContext)
+    const {project} = projectsContext;
+
+    // If no projects are selected
+    if(!project)return null;
+
+    //Array destructoring to extract actual project
+    const [actualProject] = project;
+
     return (
         <div className="formulario">
             <form>
