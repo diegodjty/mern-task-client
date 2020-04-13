@@ -12,8 +12,7 @@ const TaskForm = () => {
     // If no projects are selected
     if(!project)return null;
 
-    //Array destructoring to extract actual project
-    const [actualProject] = project;
+
 
     return (
         <div className="formulario">

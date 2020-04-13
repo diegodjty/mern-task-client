@@ -1,6 +1,7 @@
 import React,{Fragment,useContext} from 'react'
 import Task from './Task';
 import projectContext from '../../context/projects/projectContext';
+import taskContext from '../../context/task/taskContext';
 
 const TaskList = () => {
 
@@ -8,24 +9,25 @@ const TaskList = () => {
     const projectsContext = useContext(projectContext)
     const {project,deleteProject} = projectsContext;
 
+    // get the function of task context
+    const tasksContext = useContext(taskContext)
+    const {projectTask} = tasksContext;
+    // console.log(projectTask)
     // If no projects are selected
     if(!project)return <h2>Select a Project</h2>
 
     //Array destructoring to extract actual project
     const [actualProject] = project;
 
-    const tasks = [
-        
-    ]
 
     return (
         <Fragment>
             <h2>Project: {actualProject.name}</h2>
 
             <ul className="listado-tareas">
-                {tasks.length === 0
+                {projectTask.length === 0
                     ? (<li className="tarea"><p>No tasks</p></li>)
-                    : tasks.map(task =>(
+                    : projectTask.map(task =>(
                         <Task 
                             task={task}
                         />

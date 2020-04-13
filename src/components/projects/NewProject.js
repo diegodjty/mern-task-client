@@ -8,7 +8,6 @@ const NewProject = () => {
     const [project,setProject] = useState({
         name: ''
     });
-    console.log(formError)
     const {name} = project
     const onChangeProject =  e =>{
         setProject({
