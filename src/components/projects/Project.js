@@ -10,12 +10,12 @@ const Project = ({project}) => {
 
     // get the function of task context
     const tasksContext = useContext(taskContext)
-    const {getTask} = tasksContext;
+    const {getTasks} = tasksContext;
 
     // Function to add actual project
     const actualProject = id =>{
         selectProject(id);
-        getTask(id) 
+        getTasks(id) 
     }
 
     return (

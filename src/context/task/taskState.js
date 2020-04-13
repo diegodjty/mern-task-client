@@ -4,12 +4,14 @@ import TaskReducer from './taskReducer'
 
 import {
     PROJECT_TASK,
-    ADD_TASK
+    ADD_TASK,
+    VALIDATE_TASK
 }from '../../types'
 
 const TaskState = (props) => {
     const initialState = {
         projectTask: null,
+        taskError: false,
         tasks: [
             {name: 'Choose Platform', status: true, projectId: 1},
             {name: 'Choose colors', status: false, projectId: 2},
@@ -27,7 +29,7 @@ const TaskState = (props) => {
     //Create dispatch and State
     const [state, dispatch] = useReducer(TaskReducer, initialState);
     //Create fucntions
-    const getTask = projectId =>{
+    const getTasks = projectId =>{
         dispatch({
             type: PROJECT_TASK,
             payload: projectId
@@ -42,14 +44,22 @@ const TaskState = (props) => {
 
         })
     }
+
+    const validateError = ()=>{
+        dispatch({
+            type: VALIDATE_TASK
+        })
+    }
     
     return (
         <TaskContext.Provider
             value={{
                 tasks: state.tasks,
                 projectTask: state.projectTask,
-                getTask,
-                addTask
+                taskError: state.taskError,
+                getTasks,
+                addTask,
+                validateError
                 
             }}
         >
