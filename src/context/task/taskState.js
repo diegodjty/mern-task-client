@@ -5,7 +5,8 @@ import TaskReducer from './taskReducer'
 import {
     PROJECT_TASK,
     ADD_TASK,
-    VALIDATE_TASK
+    VALIDATE_TASK,
+    DELETE_TASK
 }from '../../types'
 
 const TaskState = (props) => {
@@ -13,16 +14,16 @@ const TaskState = (props) => {
         projectTask: null,
         taskError: false,
         tasks: [
-            {name: 'Choose Platform', status: true, projectId: 1},
-            {name: 'Choose colors', status: false, projectId: 2},
-            {name: 'Choose pay method', status: false, projectId: 3},
-            {name: 'Choose hosting', status: true, projectId: 3},
-            {name: 'Choose colors', status: false, projectId: 2},
-            {name: 'Choose pay method', status: false, projectId: 1},
-            {name: 'Choose hosting', status: true, projectId: 4},
-            {name: 'Choose colors', status: false, projectId: 1},
-            {name: 'Choose pay method', status: false, projectId: 3},
-            {name: 'Choose hosting', status: true, projectId: 4}
+            {id: 1,name: 'Choose Platform', status: true, projectId: 1},
+            {id: 2,name: 'Choose colors', status: false, projectId: 2},
+            {id: 3,name: 'Choose pay method', status: false, projectId: 3},
+            {id: 4,name: 'Choose hosting', status: true, projectId: 3},
+            {id: 5,name: 'Choose colors', status: false, projectId: 2},
+            {id: 6,name: 'Choose pay method', status: false, projectId: 1},
+            {id: 7,name: 'Choose hosting', status: true, projectId: 4},
+            {id: 8,name: 'Choose colors', status: false, projectId: 1},
+            {id: 9,name: 'Choose pay method', status: false, projectId: 3},
+            {id: 10,name: 'Choose hosting', status: true, projectId: 4}
         ]
     }
     
@@ -45,6 +46,13 @@ const TaskState = (props) => {
         })
     }
 
+    const deleteTask = id =>{
+        dispatch({
+            type: DELETE_TASK,
+            payload: id
+        })
+    }
+
     const validateError = ()=>{
         dispatch({
             type: VALIDATE_TASK
@@ -59,7 +67,8 @@ const TaskState = (props) => {
                 taskError: state.taskError,
                 getTasks,
                 addTask,
-                validateError
+                validateError,
+                deleteTask
                 
             }}
         >
