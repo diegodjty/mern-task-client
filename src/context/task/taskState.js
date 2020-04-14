@@ -6,7 +6,8 @@ import {
     PROJECT_TASK,
     ADD_TASK,
     VALIDATE_TASK,
-    DELETE_TASK
+    DELETE_TASK,
+    TASK_STATUS
 }from '../../types'
 
 const TaskState = (props) => {
@@ -58,6 +59,13 @@ const TaskState = (props) => {
             type: VALIDATE_TASK
         })
     }
+
+    const changeStatus = task =>{
+        dispatch({
+            type: TASK_STATUS,
+            payload: task
+        })
+    }
     
     return (
         <TaskContext.Provider
@@ -68,7 +76,8 @@ const TaskState = (props) => {
                 getTasks,
                 addTask,
                 validateError,
-                deleteTask
+                deleteTask,
+                changeStatus
                 
             }}
         >

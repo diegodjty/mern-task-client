@@ -10,11 +10,20 @@ const Task = ({task}) => {
 
     // get the function of task context
     const tasksContext = useContext(taskContext)
-    const {deleteTask,getTasks} = tasksContext;
+    const {deleteTask,getTasks,changeStatus} = tasksContext;
 
     const taskDelete = id => {
         deleteTask(id)
         getTasks(projects[0].id)
+    }
+
+    const changeTaskStatus = task =>{
+        if(task.status){
+            task.status = false;
+        }else{
+            task.status = true;
+        }
+        changeStatus(task)
     }
 
     return (
@@ -28,6 +37,7 @@ const Task = ({task}) => {
                             <button
                                 type="button"
                                 className="completo"
+                                onClick={()=>changeTaskStatus(task)}
                             >
                                 Complete
                             </button>
@@ -37,6 +47,7 @@ const Task = ({task}) => {
                             <button
                                 type="button"
                                 className="incompleto"
+                                onClick={()=>changeTaskStatus(task)}
                             >
                                 Incomplete
                             </button>
