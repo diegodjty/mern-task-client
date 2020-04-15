@@ -7,13 +7,15 @@ import {
     ADD_TASK,
     VALIDATE_TASK,
     DELETE_TASK,
-    TASK_STATUS
+    TASK_STATUS,
+    ACTUAL_TASK
 }from '../../types'
 
 const TaskState = (props) => {
     const initialState = {
         projectTask: null,
         taskError: false,
+        selectedTask: null,
         tasks: [
             {id: 1,name: 'Choose Platform', status: true, projectId: 1},
             {id: 2,name: 'Choose colors', status: false, projectId: 2},
@@ -66,6 +68,13 @@ const TaskState = (props) => {
             payload: task
         })
     }
+
+    const setActualState = task =>{
+        dispatch({
+            typer: ACTUAL_TASK,
+            payload: task
+        })
+    }
     
     return (
         <TaskContext.Provider
@@ -73,11 +82,13 @@ const TaskState = (props) => {
                 tasks: state.tasks,
                 projectTask: state.projectTask,
                 taskError: state.taskError,
+                selectedTask: state.selectedTask,
                 getTasks,
                 addTask,
                 validateError,
                 deleteTask,
-                changeStatus
+                changeStatus,
+                setActualState
                 
             }}
         >

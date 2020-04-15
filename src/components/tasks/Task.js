@@ -10,7 +10,7 @@ const Task = ({task}) => {
 
     // get the function of task context
     const tasksContext = useContext(taskContext)
-    const {deleteTask,getTasks,changeStatus} = tasksContext;
+    const {deleteTask,getTasks,changeStatus,setActualState} = tasksContext;
 
     const taskDelete = id => {
         deleteTask(id)
@@ -24,6 +24,10 @@ const Task = ({task}) => {
             task.status = true;
         }
         changeStatus(task)
+    }
+
+    const selectTask = task =>{
+        setActualState(task)
     }
 
     return (
@@ -60,6 +64,7 @@ const Task = ({task}) => {
                 <button
                     type="button"
                     className="btn btn-primario"
+                    onClick={()=>selectTask(task)}
                 >
                     Edit
                 </button>
