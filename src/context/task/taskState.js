@@ -8,7 +8,8 @@ import {
     VALIDATE_TASK,
     DELETE_TASK,
     TASK_STATUS,
-    ACTUAL_TASK
+    ACTUAL_TASK,
+    EDIT_TASK
 }from '../../types'
 
 const TaskState = (props) => {
@@ -71,7 +72,14 @@ const TaskState = (props) => {
 
     const setActualState = task =>{
         dispatch({
-            typer: ACTUAL_TASK,
+            type: ACTUAL_TASK,
+            payload: task
+        })
+    }
+
+    const editTask = task =>{
+        dispatch({
+            type: EDIT_TASK,
             payload: task
         })
     }
@@ -88,7 +96,8 @@ const TaskState = (props) => {
                 validateError,
                 deleteTask,
                 changeStatus,
-                setActualState
+                setActualState,
+                editTask
                 
             }}
         >

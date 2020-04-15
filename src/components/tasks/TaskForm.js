@@ -1,4 +1,4 @@
-import React,{useContext,useState} from 'react'
+import React,{useContext,useState,useEffect} from 'react'
 
 import projectContext from '../../context/projects/projectContext';
 import taskContext from '../../context/task/taskContext';
@@ -12,7 +12,17 @@ const TaskForm = () => {
 
      // get the function of task context
      const tasksContext = useContext(taskContext)
-     const {addTask,validateError,taskError,getTasks} = tasksContext;
+     const {addTask,validateError,taskError,getTasks,selectedTask,editTask} = tasksContext;
+
+     useEffect(()=>{
+        if(selectedTask !== null){
+            setTask(selectedTask)
+        }else{
+            setTask({
+                name: ''
+            })
+        }
+     },[selectedTask])
 
     const [task, setTask] = useState({
         name: '',
@@ -36,20 +46,27 @@ const TaskForm = () => {
     const onSubmit = e => {
         e.preventDefault()
         // Validate
+
         if(name.trim() === ''){
             validateError() 
             return;
         }
-        // add new task to state
-        task.projectId = actualProject.id
-        task.status = false
-        addTask(task)
 
+        if(selectedTask === null){
+            // add new task to state
+            task.projectId = actualProject.id
+            task.status = false
+            addTask(task)
+        }else{
+            editTask(task)
+        }
         getTasks(actualProject.id);
+
         // form reset
         setTask({
             name: ''
         })
+        
     }
 
     return (
@@ -72,7 +89,7 @@ const TaskForm = () => {
                     <input 
                         type="submit"
                         className="btn btn-primario btn-submit btn-block"
-                        value="Add Task"
+                        value={selectedTask !== null ?'Edit Task':'Add Task'}
                     />
                 </div>
             </form>
