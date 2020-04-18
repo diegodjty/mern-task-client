@@ -36,7 +36,9 @@ export default (state, action) => {
         case EDIT_TASK:
             return{
                 ...state,
-                tasks: state.tasks.map(task => task.id === action.payload.id ? action.payload:task)
+                tasks: state.tasks.map(task => task.id === action.payload.id ? action.payload:task),
+                selectedTask : null
+
             }
         case ACTUAL_TASK:
             return{

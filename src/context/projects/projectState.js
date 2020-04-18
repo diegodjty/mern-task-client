@@ -1,6 +1,6 @@
 import React,{useReducer} from 'react'
 
-import uuid from 'uuid/v4'
+import { v4 as uuidv4 } from 'uuid';
 
 import projectContext from './projectContext'
 import projectReducer from './projectReducer'
@@ -46,7 +46,7 @@ const ProjectState = props =>{
     }
 
     const addProject = project =>{
-        project.id = uuid()
+        project.id = uuidv4()
         dispatch({
             type: ADD_PROJECT,
             payload: project
