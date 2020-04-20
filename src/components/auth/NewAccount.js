@@ -24,7 +24,7 @@ const NewAccount = () => {
         e.preventDefault()
 
         // Validate no empty fields
-
+        
 
         // Password 6 characters minimun
 
