@@ -2,7 +2,7 @@ import React, {useReducer} from 'react'
 import AuthContext from './authContext';
 import authReducer from './authReducer'
 
-import axiosClient from '../../config/axios';
+import axiosClient from '../../components/config/axios';
 
 import{
 
@@ -33,17 +33,23 @@ const AuthState = props =>{
     const registerUser = async data =>{
         try {
 
-            const response = await axiosClient.post('/api/users', data)
-            console.log(response)
+            const response = await axiosClient.post('/api/user', data)
+            
 
             dispatch({
-                type: SIGNIN_SUCC
+                type: SIGNIN_SUCC,
+                payload: response.data
             })
             
         } catch (error) {
-            console.log(error)
+
+            const alert ={
+                msg: error.response.data.msg,
+                category: 'alert-error'
+            }
             dispatch({
-                type: SIGNUP_ERROR
+                type: SIGNUP_ERROR,
+                payload: alert
             })
         }
 
