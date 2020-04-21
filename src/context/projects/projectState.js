@@ -1,10 +1,9 @@
 import React,{useReducer} from 'react'
 
-import { v4 as uuidv4 } from 'uuid';
-
 import projectContext from './projectContext'
 import projectReducer from './projectReducer'
 import {PROJECT_FORM,
+
         GET_PROJECTS,
         ADD_PROJECT,
         VALIDATE_FORM,
@@ -12,15 +11,12 @@ import {PROJECT_FORM,
         DELETE_PROJECT
     }
 from '../../types'
+import axiosClient from '../../components/config/axios';
 
 
 
 const ProjectState = props =>{
-    const projects = [
-        {id:1, name: 'Virstual store'},
-        {id:2, name: 'Physical store'},
-        {id:3, name: 'online store'},
-    ]
+   
 
     const initialSate = {
         form : false,
@@ -38,19 +34,30 @@ const ProjectState = props =>{
         })
     }
 
-    const getProjects = () =>{
-        dispatch({
-            type: GET_PROJECTS,
-            payload: projects
-        })
+    const getProjects = async () =>{
+        try {
+            const results = await axiosClient.get('/api/projects');
+
+            dispatch({
+                type: GET_PROJECTS,
+                payload: results.data.projects
+            })
+        } catch (error) {
+            console.log(error)
+        }
     }
 
-    const addProject = project =>{
-        project.id = uuidv4()
-        dispatch({
-            type: ADD_PROJECT,
-            payload: project
-        })
+    const addProject = async project =>{
+        try {
+            const result = await axiosClient.post('/api/projects', project)
+            console.log(result)
+            dispatch({
+                type: ADD_PROJECT,
+                payload: result.data
+            })
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     const showError = () => {
