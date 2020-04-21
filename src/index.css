@@ -327,3 +327,9 @@ aside  {
   opacity: .7;
 }
 
+.close-sesion{
+  color: var(--blanco);
+  font-size: 2.2rem;
+  margin: 0;
+  font-weight: bold;
+}

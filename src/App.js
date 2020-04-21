@@ -8,6 +8,7 @@ import TaskState from './context/task/taskState';
 import AlertState from './context/alerts/alertState'
 import AuthState from './context/auth/authState';
 import tokenAuth from './components/config/token';
+import PrivateRoute from './components/routes/privateRoute';
 
 
 // Check if there is a token
@@ -26,7 +27,7 @@ function App() {
               <Switch>
                 <Route exact path="/" component={Login} />
                 <Route exact path="/new-account" component={NewAccount} />
-                <Route exact path="/projects" component={Projects} />
+                <PrivateRoute exact path="/projects" component={Projects} />
               </Switch>
             </Router>
           </AuthState>

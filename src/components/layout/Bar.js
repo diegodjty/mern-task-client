@@ -5,7 +5,7 @@ const Bar = () => {
 
      // Extrac auth info
      const authContext = useContext(AuthContext)
-     const {authUser, user} =authContext;
+     const {authUser, user,logOut} =authContext;
  
      useEffect(()=>{
          authUser()
@@ -14,7 +14,12 @@ const Bar = () => {
         <header className="app-header">
             {user ?<p className="nombre-usuario">Hi <span>{user.name}</span></p> :null}
             <nav className="nav-principal">
-                <a href="#!">Sign out</a>
+                <button
+                    className="btn btn-blank close-sesion"
+                    onClick={()=>logOut()}
+                >
+                    Sign out
+                </button>
             </nav>
         </header>
     )
