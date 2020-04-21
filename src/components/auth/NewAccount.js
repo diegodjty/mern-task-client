@@ -30,11 +30,17 @@ const NewAccount = () => {
         // Validate no empty fields
         if(name.trim()==='' || email.trim()==='' || password.trim()==='' || confirm.trim()===''){
             showAlert('all fields are required', 'alerta-error')
+            return;
         }
         // Password 6 characters minimun
-        
+        if(password.length < 6){
+            showAlert('password minimum 6 charachters', 'alerta-error')
+            return;
+        }
         // Same 2 passwords
-
+        if(password!==confirm){
+            showAlert('password are different', 'alerta-error')
+        }
         // Pass to action
 
     }
@@ -89,7 +95,7 @@ const NewAccount = () => {
                         <input 
                             type="password"
                             id="confirm"
-                            name="password"
+                            name="confirm"
                             placeholder="Confirm yout Password"
                             value={confirm}
                             onChange={onChange}
