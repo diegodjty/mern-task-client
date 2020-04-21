@@ -2,9 +2,12 @@ import React, {useReducer} from 'react'
 import AuthContext from './authContext';
 import authReducer from './authReducer'
 
+import axiosClient from '../../config/axios';
+
 import{
+
     SIGNIN_SUCC,
-    SIGNIN_ERROR,
+    SIGNUP_ERROR,
     GET_USER,
     LOGIN_SUCC,
     LOGIN_ERROR,
@@ -27,13 +30,34 @@ const AuthState = props =>{
 
     // Functions
 
+    const registerUser = async data =>{
+        try {
+
+            const response = await axiosClient.post('/api/users', data)
+            console.log(response)
+
+            dispatch({
+                type: SIGNIN_SUCC
+            })
+            
+        } catch (error) {
+            console.log(error)
+            dispatch({
+                type: SIGNUP_ERROR
+            })
+        }
+
+
+    }
+
     return(
         <AuthContext.Provider
             value={{
                 token: state.token,
                 authenticated: state.authenticated,
                 user: state.user,
-                message: state.message
+                message: state.message,
+                registerUser
 
             }}
         >

@@ -17,7 +17,7 @@ export const SHOW_ALERT = 'SHOW_ALERT'
 export const HIDE_ALERT = 'HIDE_ALERT'
 
 export const SIGNIN_SUCC= 'SIGNIN_SUCC'
-export const SIGNIN_ERROR= 'SIGNIN_ERROR'
+export const SIGNUP_ERROR= 'SIGNIN_ERROR'
 export const GET_USER= 'GET_USER'
 export const LOGIN_SUCC= 'LOGIN_SUCC'
 export const LOGIN_ERROR= 'LOGIN_ERROR'

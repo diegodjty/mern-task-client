@@ -1,12 +1,16 @@
 import React, {useState,useContext} from 'react'
 import { Link } from 'react-router-dom'
 import AlertContext from '../../context/alerts/alertContext';
+import AuthContext from '../../context/auth/authContext';
 
 const NewAccount = () => {
 
     // extract value from context
     const alertContext = useContext(AlertContext)
     const {alert, showAlert} = alertContext
+
+    const authContext = useContext(AuthContext);
+    const {registerUser} = authContext;
 
     const [user, setUser] = useState({
         name: '',
@@ -42,6 +46,11 @@ const NewAccount = () => {
             showAlert('password are different', 'alerta-error')
         }
         // Pass to action
+        registerUser({
+            name,
+            email,
+            password
+        })
 
     }
 
