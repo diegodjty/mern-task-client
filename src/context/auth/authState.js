@@ -3,8 +3,10 @@ import AuthContext from './authContext';
 import authReducer from './authReducer'
 
 import axiosClient from '../../components/config/axios';
+import tokenAuth from '../../components/config/token';
 
 import{
+
 
     SIGNIN_SUCC,
     SIGNUP_ERROR,
@@ -32,18 +34,19 @@ const AuthState = props =>{
 
     const registerUser = async data =>{
         try {
-
+            console.log(data)
             const response = await axiosClient.post('/api/user', data)
-            
-
             dispatch({
                 type: SIGNIN_SUCC,
                 payload: response.data
             })
+
+            // Get user
+            authUser()
             
         } catch (error) {
 
-            const alert ={
+            const alert = {
                 msg: error.response.data.msg,
                 category: 'alert-error'
             }
@@ -52,8 +55,26 @@ const AuthState = props =>{
                 payload: alert
             })
         }
+    }
 
+    const authUser = async () =>{
+        const token = localStorage.getItem('token');
 
+        if(token){
+            tokenAuth(token)
+        }
+
+        try {
+            const response = await axiosClient.get('/api/auth')
+            dispatch({
+                type: GET_USER,
+                payload: response.data.user
+            })
+        } catch (error) {
+            dispatch({
+                type: LOGIN_ERROR
+            })
+        }
     }
 
     return(
