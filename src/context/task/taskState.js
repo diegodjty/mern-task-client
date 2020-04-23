@@ -9,7 +9,6 @@ import {
     ADD_TASK,
     VALIDATE_TASK,
     DELETE_TASK,
-    TASK_STATUS,
     ACTUAL_TASK,
     EDIT_TASK
 }from '../../types'
@@ -41,7 +40,7 @@ const TaskState = (props) => {
 
     const addTask = async task => {
         try {
-            const results = await axiosClient.post('/api/tasks', task)
+            await axiosClient.post('/api/tasks', task)
             dispatch({
                 type: ADD_TASK,
                 payload: task

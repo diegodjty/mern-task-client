@@ -9,6 +9,7 @@ const Bar = () => {
  
      useEffect(()=>{
          authUser()
+         // eslint-disable-next-line
      },[])
     return (
         <header className="app-header">

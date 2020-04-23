@@ -24,7 +24,7 @@ const NewAccount = (props) => {
         if(message){
             showAlert(message.msg, message.msg.category)
         }
-
+        // eslint-disable-next-line
     },[message,authenticated,props.history]);
 
     const [user, setUser] = useState({
