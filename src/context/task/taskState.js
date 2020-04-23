@@ -55,10 +55,11 @@ const TaskState = (props) => {
     }
 
     const deleteTask = id =>{
-        dispatch({
-            type: DELETE_TASK,
-            payload: id
-        })
+        try {
+            
+        } catch (error) {
+            
+        }
     }
 
     const validateError = ()=>{
