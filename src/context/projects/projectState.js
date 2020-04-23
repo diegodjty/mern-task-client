@@ -8,7 +8,8 @@ import {PROJECT_FORM,
         ADD_PROJECT,
         VALIDATE_FORM,
         ACTUAL_PROJECT,
-        DELETE_PROJECT
+        DELETE_PROJECT,
+        PROJECT_ERROR
     }
 from '../../types'
 import axiosClient from '../../components/config/axios';
@@ -22,7 +23,8 @@ const ProjectState = props =>{
         form : false,
         projects : [],
         formError: false,
-        project: null
+        project: null,
+        message: null
     }
 
     const [state, dispatch] = useReducer(projectReducer,initialSate)
@@ -56,7 +58,14 @@ const ProjectState = props =>{
                 payload: result.data
             })
         } catch (error) {
-            console.log(error)
+            const alert = {
+                msg: 'an error occured',
+                category: 'alert-error'
+            }
+            dispatch({
+                type: PROJECT_ERROR,
+                payload: alert
+            })
         }
     }
 
@@ -82,7 +91,14 @@ const ProjectState = props =>{
             })
             
         } catch (error) {
-            console.log(error)
+            const alert = {
+                msg: 'an error occured',
+                category: 'alert-error'
+            }
+            dispatch({
+                type: PROJECT_ERROR,
+                payload: alert
+            })
         }
     }
 
@@ -93,6 +109,7 @@ const ProjectState = props =>{
                 projects: state.projects,
                 formError: state.formError,
                 project: state.project,
+                message: state.message,
                 deleteProject,
                 showError,
                 selectProject,
