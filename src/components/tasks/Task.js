@@ -12,8 +12,11 @@ const Task = ({task}) => {
     const tasksContext = useContext(taskContext)
     const {deleteTask,getTasks,changeStatus,setActualState} = tasksContext;
 
+    
+
     const taskDelete = id => {
-        deleteTask(id)
+        console.log(projects[0]._id)
+        deleteTask(id, projects[0]._id)
         getTasks(projects[0].id)
     }
 
@@ -71,7 +74,7 @@ const Task = ({task}) => {
                 <button
                     type="button"
                     className="btn btn-secundario"
-                    onClick={()=> taskDelete(task.id)}
+                    onClick={()=> taskDelete(task._id)}
                 >
                     Delete
                 </button>
