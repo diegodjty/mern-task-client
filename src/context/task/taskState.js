@@ -60,7 +60,7 @@ const TaskState = (props) => {
                 payload: id
             })
         } catch (error) {
-            console.log('taveras')
+            console.log(error)
         }
     }
 
@@ -69,14 +69,6 @@ const TaskState = (props) => {
             type: VALIDATE_TASK
         })
     }
-
-    const changeStatus = task =>{
-        dispatch({
-            type: TASK_STATUS,
-            payload: task
-        })
-    }
-
     const setActualState = task =>{
         dispatch({
             type: ACTUAL_TASK,
@@ -84,11 +76,19 @@ const TaskState = (props) => {
         })
     }
 
-    const editTask = task =>{
-        dispatch({
-            type: EDIT_TASK,
-            payload: task
-        })
+    const editTask = async task =>{
+        
+        try {
+            const results = await axiosClient.put(`/api/tasks/${task._id}`,task)
+            
+            console.log(results)
+            dispatch({
+                type: EDIT_TASK,
+                payload: results.data.task
+            })
+        } catch (error) {
+            console.log(error)
+        }
     }
     
     return (
@@ -101,7 +101,6 @@ const TaskState = (props) => {
                 addTask,
                 validateError,
                 deleteTask,
-                changeStatus,
                 setActualState,
                 editTask
                 

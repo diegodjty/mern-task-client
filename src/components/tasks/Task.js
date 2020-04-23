@@ -10,7 +10,7 @@ const Task = ({task}) => {
 
     // get the function of task context
     const tasksContext = useContext(taskContext)
-    const {deleteTask,getTasks,changeStatus,setActualState} = tasksContext;
+    const {deleteTask,getTasks,editTask,setActualState} = tasksContext;
 
     
 
@@ -26,7 +26,7 @@ const Task = ({task}) => {
         }else{
             task.status = true;
         }
-        changeStatus(task)
+        editTask(task)
     }
 
     const selectTask = task =>{
